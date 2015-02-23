@@ -1,10 +1,15 @@
 /**
 * Templates
 */
+if (Meteor.isClient){
+  Meteor.subscribe('chatMessages');
+}
+
 Template.messages.helpers({
-    messages: function() {
-        return Messages.find({}, { sort: { time: -1}});
-    }
+  messages: function() {
+    if (Meteor.user())
+      return Messages.find({}, { sort: { time: -1}});
+  }
 });
 
 Template.input.events = {
