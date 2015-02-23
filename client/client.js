@@ -20,16 +20,14 @@ Template.input.events = {
         else
           var name = 'Anonymous';
         var message = document.getElementById('message');
+        var message = message.value;
 
       if (message.value != '') {
-        Messages.insert({
-          name: name,
-          message: message.value,
-          time: Date.now(),
-        });
+        Meteor.call('insertChatMessage', name, message);
 
         message.value = '';
       }
+
     }
   }
 }
