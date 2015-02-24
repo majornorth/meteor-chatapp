@@ -6,3 +6,17 @@ html {
 .login-buttons-dropdown-align-right {
     float: right;
 }
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.current-user-msg {
+    text-align: right;
+}
+
+#message {
+    width: 100%;
+    height: 25px;
+}

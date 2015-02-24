@@ -8,7 +8,13 @@ if (Meteor.isClient){
 Template.messages.helpers({
   messages: function() {
     if (Meteor.user())
-      return Messages.find({}, { sort: { time: -1}});
+      return Messages.find({}, { sort: { time: 1}});
+  },
+  currentUserSubmitted: function() {
+    var currentUser = Meteor.user();
+    var currentUserName = currentUser.profile.name;
+    if (currentUserName === this.name)
+      return true;
   }
 });
 
@@ -20,15 +26,11 @@ Template.input.events = {
         else
           var name = 'Anonymous';
         var message = document.getElementById('message');
+        var message = message.value;
 
       if (message.value != '') {
-        Messages.insert({
-          name: name,
-          message: message.value,
-          time: Date.now(),
-        });
-
-        message.value = '';
+        Meteor.call('insertChatMessage', name, message);
+        document.getElementById('message').value = '';
       }
     }
   }

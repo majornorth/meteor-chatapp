@@ -3,11 +3,17 @@
 </head>
 
 <body>
-  {{> loginButtons align="right"}}<br>
-  <h1>Chatapp</h1>
-  {{> welcome }}
-  {{> input }}
-  {{> messages }}
+  {{> loginButtons align="right"}}
+  <div class="container">
+    <h1>Chatapp</h1>
+    {{> welcome }}
+    <div id="messages-container">
+      {{> messages }}
+    </div>
+    {{#if currentUser}}
+      {{> input }}
+    {{/if}}
+  </div>
 </body>
 
 <template name="welcome">
@@ -18,10 +24,14 @@
 
 <template name="messages">
   {{#each messages}}
-    <strong>{{name}}:</strong> {{message}}<br>
+    {{#if currentUserSubmitted}}
+      <div class="current-user-msg"><strong>{{name}}:</strong><br /> {{message}}</div>
+    {{else}}
+      <div class="other-user"><strong>{{name}}:</strong><br /> {{message}}</div>
+    {{/if}}
   {{/each}}
 </template>
 
 <template name="input">
-  <p>Message: <input type="text" id="message"></p>
+  <div>Message: <input type="text" id="message"></div>
 </template>
