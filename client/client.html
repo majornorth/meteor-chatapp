@@ -6,32 +6,47 @@
   {{> loginButtons align="right"}}
   <div class="container">
     <h1>Chatapp</h1>
+    <div
+      class="fb-like"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
     {{> welcome }}
     <div id="messages-container">
       {{> messages }}
     </div>
+  </div>
+  <div class="center">
     {{#if currentUser}}
       {{> input }}
     {{/if}}
-  </div>
+</div>
 </body>
 
 <template name="welcome">
-  <p>
-    Welcome to the example chat app! Please log in to show your username.
-  </p>
+  {{#unless currentUser}}
+    <p>
+      Welcome to the example chat app! Please log in to show your username.
+    </p>
+  {{/unless}}
 </template>
 
 <template name="messages">
   {{#each messages}}
     {{#if currentUserSubmitted}}
-      <div class="current-user-msg"><strong>{{name}}:</strong><br /> {{message}}</div>
+      {{#if currentUser}}
+        <div class="current-user-msg">{{message}}</div>
+      {{else}}
+        <div class="current-user-msg"><strong>{{name}}:</strong><br /> {{message}}</div>
+      {{/if}}
     {{else}}
-      <div class="other-user"><strong>{{name}}:</strong><br /> {{message}}</div>
+      <small class="other-user-namestamp">{{name}}</small><br />
+      <div class="other-user-msg">{{message}}</div>
     {{/if}}
   {{/each}}
 </template>
 
 <template name="input">
-  <div>Message: <input type="text" id="message"></div>
+  <div id="addMessage"><input type="text" id="message" placeholder="Enter new message"></div>
 </template>
