@@ -12,11 +12,9 @@
       {{> messages }}
     </div>
   </div>
-  <div class="center">
-    {{#if currentUser}}
-      {{> input }}
-    {{/if}}
-</div>
+  {{#if currentUser}}
+    {{> input }}
+  {{/if}}
 </body>
 
 <template name="welcome">
@@ -55,5 +53,9 @@
 </template>
 
 <template name="input">
-  <div id="addMessage"><input type="text" id="message" placeholder="Enter new message"></div>
+  <div class="center-add-msg">
+    <div id="addMessage">
+      <input type="text" id="message" placeholder="Enter new message">
+    </div>
+  </div>
 </template>
