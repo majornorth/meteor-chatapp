@@ -3,8 +3,8 @@
 </head>
 
 <body>
-  {{> loginButtons align="right"}}
   <div class="container">
+    {{> loginButtons align="right"}}
     <h1>Chatapp</h1>
     {{> welcome }}
     <div id="messages-container">
@@ -28,22 +28,28 @@
 </template>
 
 <template name="loadEarlierMessages">
-  <div class="load-more">
-    <button id="loadMoreButton">Load Earlier Messages</button>
-  </div>
+  {{#if currentUser}}
+    <div class="load-more">
+      <button id="loadMoreButton">Load Earlier Messages</button>
+    </div>
+  {{/if}}
 </template>
 
 <template name="messages">
   {{#each messages}}
     {{#if currentUserSubmitted}}
       {{#if currentUser}}
-        <div class="current-user-msg">{{message}}</div>
-      {{else}}
-        <div class="current-user-msg"><strong>{{name}}:</strong><br /> {{message}}</div>
+        <div class="current-user-msg">
+          <div>{{message}}</div>
+        </div>
       {{/if}}
     {{else}}
-      <small class="other-user-namestamp">{{name}}</small><br />
-      <div class="other-user-msg">{{message}}</div>
+      <div class="other-msg-container">
+        <small class="other-user-namestamp">{{name}}</small><br />
+        <div class="other-user-msg">
+          <div>{{message}}</div>
+        </div>
+      </div>
     {{/if}}
   {{/each}}
 </template>

@@ -3,12 +3,17 @@ html {
     font-family: Verdana, sans-serif;
 }
 
+/* Login Buttons */
 .login-buttons-dropdown-align-right {
     float: right;
+    position: relative;
+    top: 20px;
 }
 
+
+/* Container elements */
 .container {
-    width: 800px;
+    width: 640px;
     margin: 0 auto;
 }
 
@@ -16,23 +21,61 @@ html {
     margin-bottom: 60px;
 }
 
-.current-user-msg {
+
+/* Load Earlier Messages */
+.load-more {
+    margin-bottom: 40px;
+}
+
+#loadMoreButton {
+    background: #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #43828f;
+    color: #414141;
+    font-size: 13px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+#loadMoreButton:focus {
+    outline: 0;
+}
+
+#loadMoreButton:hover {
+    background-color: #f1f1f1;
+}
+
+
+/* Message bubbles */
+.current-user-msg {
     color: #fff;
-    margin-left: 50%;
+    margin-left: 40%;
     margin-bottom: 10px;
-    padding: 10px;
     text-align: right;
 }
 
+.other-msg-container {
+    margin-bottom: 40px;
+}
+
 .other-user-msg {
-    border-radius: 5px;
-    background-color: #ddd;
-    margin-right: 50%;
-    margin-bottom: 15px;
-    padding: 10px;
+    margin-right: 40%;
     text-align: left;
+}
+
+.other-user-msg div {
+    display: inline-block;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.current-user-msg div {
+    display: inline-block;
+    background-color: #43828f;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .other-user-namestamp {
@@ -41,10 +84,16 @@ html {
     bottom: 5px;
 }
 
+
+/* Enter a message input */
 #message {
     box-sizing: border-box;
     width: 100%;
     height: 40px;
+}
+
+#message:focus {
+    outline: 0;
 }
 
 input[placeholder] {
