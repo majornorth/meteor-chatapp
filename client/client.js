@@ -1,9 +1,9 @@
 /**
 * Templates
 */
-if (Meteor.isClient){
-  Meteor.subscribe('chatMessages');
-}
+Meteor.subscribe('chatMessages', function () {
+  Session.set("messagesLoaded", true)
+});
 
 Session.setDefault("messagesLimit", 20);
 Template.messages.helpers({
@@ -25,18 +25,18 @@ Template.messages.helpers({
 });
 
 Template.input.events = {
-  'keydown input#message' : function (event) {
+  'keydown input#message' : function (event, tmpl) {
     if (event.which == 13) { // 13 is the enter key event
         if (Meteor.user())
           var name = Meteor.user().profile.name;
         else
           var name = 'Anonymous';
-        var message = document.getElementById('message');
+        var message = tmpl.find('#message');
         var message = message.value;
 
       if (message.value != '') {
         Meteor.call('insertChatMessage', name, message);
-        document.getElementById('message').value = '';
+        tmpl.find('#message').value = '';
       }
     }
   }
@@ -48,6 +48,8 @@ Template.loadEarlierMessages.events({
   }
 });
 
-$(window).load(function() {
-  $("html, body").animate({ scrollTop: $(document).height() });
+Tracker.autorun(function () {
+  if (Session.equals("messagesLoaded", true)) {
+    $("html, body").animate({ scrollTop: $(document).height() });
+  }
 });
