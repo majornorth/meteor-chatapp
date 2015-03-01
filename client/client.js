@@ -5,10 +5,16 @@ if (Meteor.isClient){
   Meteor.subscribe('chatMessages');
 }
 
+Session.setDefault("messagesLimit", 20);
 Template.messages.helpers({
   messages: function() {
-    if (Meteor.user())
-      return Messages.find({}, { sort: { time: 1}});
+    if (Meteor.user()) {
+      var earliest = Messages.findOne({}, { sort: {time: -1}, skip: Session.get("messagesLimit")});
+      if (!earliest) {
+        earliest = Messages.findOne({}, {sort: {time: 1}});
+      }
+      return earliest && Messages.find({time: {$gte: earliest.time}}, { sort: { time: 1}});
+    }
   },
   currentUserSubmitted: function() {
     var currentUser = Meteor.user();
@@ -35,6 +41,12 @@ Template.input.events = {
     }
   }
 }
+
+Template.loadEarlierMessages.events({
+  'click #loadMoreButton': function () {
+    Session.set("messagesLimit", Session.get("messagesLimit") + 20);
+  }
+});
 
 $(window).load(function() {
   $("html, body").animate({ scrollTop: $(document).height() });

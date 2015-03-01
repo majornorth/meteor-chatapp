@@ -8,6 +8,7 @@
     <h1>Chatapp</h1>
     {{> welcome }}
     <div id="messages-container">
+      {{> loadEarlierMessages }}
       {{> messages }}
     </div>
   </div>
@@ -24,6 +25,12 @@
       Welcome to the example chat app! Please log in to show your username.
     </p>
   {{/unless}}
+</template>
+
+<template name="loadEarlierMessages">
+  <div class="load-more">
+    <button id="loadMoreButton">Load Earlier Messages</button>
+  </div>
 </template>
 
 <template name="messages">
