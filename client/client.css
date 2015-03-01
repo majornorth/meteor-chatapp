@@ -85,6 +85,16 @@ html {
 }
 
 
+/* User message profile picture */
+.current-user-picture {
+    width: 30px;
+    margin-left: 5px;
+    position: relative;
+    top: 5px;
+    border-radius: 5px;
+}
+
+
 /* Enter a message input */
 #message {
     border-radius: 5px;

@@ -38,7 +38,7 @@
     {{#if currentUserSubmitted}}
       {{#if currentUser}}
         <div class="current-user-msg">
-          <div>{{message}}</div>
+          <div>{{message}}</div><img class="current-user-picture" src="{{currentUser.profile.picture}}">
         </div>
       {{/if}}
     {{else}}
