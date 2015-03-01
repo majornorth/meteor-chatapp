@@ -18,7 +18,8 @@ html {
 
 .current-user-msg {
     border-radius: 5px;
-    background-color: pink;
+    background-color: #43828f;
+    color: #fff;
     margin-left: 50%;
     margin-bottom: 10px;
     padding: 10px;
@@ -27,7 +28,7 @@ html {
 
 .other-user-msg {
     border-radius: 5px;
-    background-color: #ccc;
+    background-color: #ddd;
     margin-right: 50%;
     margin-bottom: 15px;
     padding: 10px;

@@ -35,3 +35,7 @@ Template.input.events = {
     }
   }
 }
+
+$(window).load(function() {
+  $("html, body").animate({ scrollTop: $(document).height() });
+});
