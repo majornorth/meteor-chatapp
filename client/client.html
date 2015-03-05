@@ -27,9 +27,11 @@
 
 <template name="loadEarlierMessages">
   {{#if currentUser}}
-    <div class="load-more">
-      <button id="loadMoreButton">Load Earlier Messages</button>
-    </div>
+    {{#if messages}}
+      <div class="load-more">
+        <button id="loadMoreButton">Load Earlier Messages</button>
+      </div>
+    {{/if}}
   {{/if}}
 </template>
 
@@ -38,14 +40,14 @@
     {{#if currentUserSubmitted}}
       {{#if currentUser}}
         <div class="current-user-msg">
-          <div>{{message}}</div><img class="current-user-picture" src="{{otherUserPicture.profile.picture}}">
+          <div>{{message}}</div><img class="current-user-picture" src="{{currentUser.profile.picture}}">
         </div>
       {{/if}}
     {{else}}
       <div class="other-msg-container">
         <small class="other-user-namestamp">{{name}}</small><br />
         <div class="other-user-msg">
-          <div>{{message}}</div>
+          <div>{{message}}</div><img class="other-user-picture" src="{{otherUserPicture.profile.picture}}">
         </div>
       </div>
     {{/if}}

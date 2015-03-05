@@ -5,6 +5,8 @@ Meteor.subscribe('chatMessages', function () {
   Session.set("messagesLoaded", true)
 });
 
+Meteor.subscribe('userPics');
+
 Session.setDefault("messagesLimit", 20);
 Template.messages.helpers({
   messages: function() {
@@ -23,9 +25,7 @@ Template.messages.helpers({
       return true;
   },
   otherUserPicture: function() {
-    var currentUserId = this.submittedBy;
-    debugger;
-    var currentUser = Meteor.user.find({"_id": currentUserId}).fetch();
+    return Meteor.users.findOne(this.submittedBy);
   }
 });
 

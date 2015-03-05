@@ -2,13 +2,18 @@ Meteor.publish('chatMessages', function() {
   return Messages.find({}, { sort: { time: -1}, limit: 1000});
 });
 
+Meteor.publish('userPics', function () {
+  return Meteor.users.find({}, {fields: {'profile.picture': 1}});
+});
+
 Meteor.methods({
-  'insertChatMessage': function(name, message, currentUserId) {
+  'insertChatMessage': function(name, message) {
+    if (! this.userId) return;
     Messages.insert({
       name: name,
       message: message,
       time: Date.now(),
-      submittedBy: currentUserId
+      submittedBy: this.userId
     });
   }
 });
