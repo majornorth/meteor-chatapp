@@ -21,21 +21,28 @@ Template.messages.helpers({
     var currentUserName = currentUser.profile.name;
     if (currentUserName === this.name)
       return true;
+  },
+  otherUserPicture: function() {
+    var currentUserId = this.submittedBy;
+    debugger;
+    var currentUser = Meteor.user.find({"_id": currentUserId}).fetch();
   }
 });
 
 Template.input.events = {
   'keydown input#message' : function (event, tmpl) {
     if (event.which == 13) { // 13 is the enter key event
-        if (Meteor.user())
+        if (Meteor.user()) {
           var name = Meteor.user().profile.name;
-        else
+          var currentUserId = Meteor.userId();
+        } else {
           var name = 'Anonymous';
+        }
         var message = tmpl.find('#message');
         var message = message.value;
 
       if (message.value != '') {
-        Meteor.call('insertChatMessage', name, message);
+        Meteor.call('insertChatMessage', name, message, currentUserId);
         tmpl.find('#message').value = '';
       }
     }
@@ -43,8 +50,17 @@ Template.input.events = {
 }
 
 Template.loadEarlierMessages.events({
-  'click #loadMoreButton': function () {
+  'click #loadMoreButton': function() {
     Session.set("messagesLimit", Session.get("messagesLimit") + 20);
+  }
+});
+
+Template.messages.events({
+  'click .other-msg-container': function() {
+    console.log(this.name);
+  },
+  'click .current-user-msg': function() {
+    console.log(this);
   }
 });
 

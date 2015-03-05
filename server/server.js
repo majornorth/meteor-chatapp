@@ -3,11 +3,12 @@ Meteor.publish('chatMessages', function() {
 });
 
 Meteor.methods({
-  'insertChatMessage': function(name, message) {
+  'insertChatMessage': function(name, message, currentUserId) {
     Messages.insert({
       name: name,
       message: message,
       time: Date.now(),
+      submittedBy: currentUserId
     });
   }
 });
