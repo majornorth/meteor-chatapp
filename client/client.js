@@ -8,6 +8,7 @@ Meteor.subscribe('chatMessages', function () {
 Meteor.subscribe('userPics');
 
 Session.setDefault("messagesLimit", 20);
+
 Template.messages.helpers({
   messages: function() {
     if (Meteor.user()) {
@@ -30,7 +31,7 @@ Template.messages.helpers({
 });
 
 Template.input.events = {
-  'keydown input#message' : function (event, tmpl) {
+  'keydown textarea#message' : function (event, tmpl) {
     if (event.which == 13) { // 13 is the enter key event
         if (Meteor.user()) {
           var name = Meteor.user().profile.name;
@@ -44,10 +45,15 @@ Template.input.events = {
       if (message.value != '') {
         Meteor.call('insertChatMessage', name, message, currentUserId);
         tmpl.find('#message').value = '';
+        $('#message').scrollTop(0);
       }
     }
   }
 }
+
+Meteor.startup(function () {
+  $('textarea#message').autosize();
+});
 
 Template.loadEarlierMessages.events({
   'click #loadMoreButton': function() {

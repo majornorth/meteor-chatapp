@@ -47,7 +47,7 @@
       <div class="other-msg-container">
         <small class="other-user-namestamp">{{name}}</small><br />
         <div class="other-user-msg">
-          <div>{{message}}</div><img class="other-user-picture" src="{{otherUserPicture.profile.picture}}">
+          <img class="other-user-picture" src="{{otherUserPicture.profile.picture}}"><div>{{message}}</div>
         </div>
       </div>
     {{/if}}
@@ -57,7 +57,7 @@
 <template name="input">
   <div class="center-add-msg">
     <div id="addMessage">
-      <input type="text" id="message" placeholder="Enter new message">
+      <textarea type="text" id="message" placeholder="Enter new message"></textarea>
     </div>
   </div>
 </template>
