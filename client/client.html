@@ -1,12 +1,12 @@
 <head>
-  <title>Chat app</title>
+  <title>Chit Chatter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
   <div class="container">
     {{> loginButtons align="right"}}
-    <h1>Chatapp</h1>
+    <h1>Chit Chatter</h1>
     {{> welcome }}
     <div id="messages-container">
       {{> loadEarlierMessages }}
@@ -20,9 +20,9 @@
 
 <template name="welcome">
   {{#unless currentUser}}
-    <p>
-      Welcome to the example chat app! Please log in to show your username.
-    </p>
+    <div id="welcome-tagline">
+      Say ALL THINGS!
+    </div>
   {{/unless}}
 </template>
 
