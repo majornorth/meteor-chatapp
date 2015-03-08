@@ -139,3 +139,65 @@ textarea[placeholder] {
     bottom: 0;
     width: 600px;
 }
+
+/* Responsive design */
+@media (max-width: 720px) {
+    html {
+        padding: 0;
+    }
+
+    body {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .container > h1 {
+        display: none;
+    }
+
+    #messages-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .current-user-msg {
+        margin-left: 10%;
+    }
+
+    .current-user-msg div {
+        max-width: 79%;
+    }
+
+    .other-user-msg {
+        margin-right: 10%;
+    }
+
+    .other-user-msg div {
+        max-width: 79%;
+    }
+
+    #login-buttons {
+        display: block;
+        margin-right: 0;
+        padding: 20px;
+        width: 100%;
+        text-align: right;
+        top: 0;
+    }
+
+    #addMessage {
+        width: 100%;
+    }
+
+    #message {
+        width: 87%;
+    }
+
+    .center-add-msg {
+        width: 100%;
+    }
+}
